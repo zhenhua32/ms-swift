@@ -112,7 +112,7 @@ class SwiftMixin:
             sequence_parallel.prepare_trainer(self)
         self._fix_gradient_checkpointing()
 
-    def get_use_logits_to_keep(self, default_value: bool):
+    def get_use_logits_to_keep(self, default_value: bool = True):
         use_logits_to_keep = self.args.use_logits_to_keep
         if use_logits_to_keep is None:
             base_model = self.template.get_base_model(self.model)
@@ -387,7 +387,7 @@ class SwiftMixin:
     def train(self, *args, **kwargs):
         if self.model_meta.is_multimodal:
             models = []
-            for model_name in ['model', 'ref_model', 'value_model']:
+            for model_name in ['model', 'ref_model', 'value_model', 'teacher_model']:
                 model = getattr(self, model_name, None)
                 if isinstance(model, nn.Module):
                     models.append(model)
