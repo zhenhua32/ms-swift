@@ -26,19 +26,18 @@ swift rlhf \
     --dataloader_num_workers 4 \
     --max_completion_length 1024 \
     --reward_funcs accuracy format \
-    --reward_model /mnt/workspace/model/Qwen3-4B \
+    --reward_model /mnt/workspace/model/Qwen3-0.6B \
     --reward_model_plugin genrm \
     --reward_weights 0.5 0.5 1 \
     --num_generations 2 \
     --system /mnt/workspace/ms-swift-3.5.2/examples/train/grpo/prompt.txt \
-    --deepspeed zero3 \
+    --deepspeed zero2 \
     --temperature 1.0 \
     --top_p 1.0 \
     --top_k 80 \
     --log_completions true \
     --async_generate false \
-    --move_model_batches 16 \
-    --offload_optimizer true \
-    --offload_model true \
-    --gc_collect_after_offload true \
+    --offload_optimizer false \
+    --offload_model false \
+    --gc_collect_after_offload false \
     --sleep_level 0
