@@ -112,6 +112,14 @@ def test_dots():
     _test_model('rednote-hilab/dots.llm1.inst')
 
 
+def test_kimi_dev():
+    _test_model('moonshotai/Kimi-Dev-72B')
+
+
+def test_hunyuan():
+    _test_model('Tencent-Hunyuan/Hunyuan-A13B-Instruct')
+
+
 if __name__ == '__main__':
     # test_qwen2()
     # test_llama2()
@@ -132,4 +140,6 @@ if __name__ == '__main__':
     # test_moonlight()
     # test_deepseek_v2()
     # test_deepseek_moe()
-    test_dots()
+    # test_dots()
+    # test_kimi_dev()
+    test_hunyuan()
