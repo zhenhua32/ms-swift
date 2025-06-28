@@ -22,7 +22,7 @@ class TrainerFactory:
         'cpo': 'swift.trainers.CPOTrainer',
         'rm': 'swift.trainers.RewardTrainer',
         'ppo': 'swift.trainers.PPOTrainer',
-        'grpo': 'swift.trainers.GRPOTrainer',
+        'grpo': 'swift.trainers.GRPOTrainer',    # 先看 grpo 训练
         'gkd': 'swift.trainers.GKDTrainer',
     }
 
@@ -38,12 +38,13 @@ class TrainerFactory:
         'cpo': 'swift.trainers.CPOConfig',
         'rm': 'swift.trainers.RewardConfig',
         'ppo': 'swift.trainers.PPOConfig',
-        'grpo': 'swift.trainers.GRPOConfig',
+        'grpo': 'swift.trainers.GRPOConfig',  # 先看 grpo 训练
         'gkd': 'swift.trainers.GKDConfig',
     }
 
     @staticmethod
     def get_cls(args, mapping: Dict[str, str]):
+        # rlhf_type 的优先级更高, 因为还能同时指定 task_type
         if hasattr(args, 'rlhf_type'):
             train_method = args.rlhf_type
         else:

@@ -90,11 +90,15 @@ class SwiftSft(SwiftPipeline, TunerMixin):
             logger.info(f'The split dataset from the training set will be saved at: {val_dataset_path}.')
 
     def run(self):
+        """
+        run 函数是 SwiftSft 的主要入口函数，负责准备数据集、模型和训练器，并开始训练。
+        """
         args = self.args
 
         train_dataset, val_dataset = self._get_dataset()
         train_dataset, val_dataset = self._encode_dataset(train_dataset, val_dataset)
 
+        # 当运行任务是序列分类
         if args.task_type == 'seq_cls':
             args.problem_type = args.problem_type or getattr(self.model.config, 'problem_type', None)
             logger.info(f'args.problem_type: {args.problem_type}')
@@ -108,6 +112,7 @@ class SwiftSft(SwiftPipeline, TunerMixin):
         self.train_msg['model_parameter_info'] = model_parameter_info
         logger.info(f'model_parameter_info: {model_parameter_info}')
 
+        # 获取到真正的训练类
         trainer_cls = TrainerFactory.get_trainer_cls(args)
         trainer = trainer_cls(
             model=self.model,

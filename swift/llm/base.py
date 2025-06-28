@@ -44,6 +44,9 @@ class SwiftPipeline(ABC, ProcessorMixin):
             os.environ['GRADIO_ROOT_PATH'] = f"/{os.environ['JUPYTER_NAME']}/proxy/{args.server_port}"
 
     def main(self):
+        """
+        这是所有的入口, 就是调用 `self.run()` 方法。
+        """
         logger.info(f'Start time of running main: {dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")}')
         logger.info(f'swift.__version__: {swift.__version__}')
         result = self.run()
