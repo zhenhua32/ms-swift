@@ -1,0 +1,1 @@
+lmdeploy serve api_server /mnt/workspace/model/Qwen3-0.6B --server-port 23333 --session-len 4096 --enable-prefix-caching --cache-max-entry-count 0.1
